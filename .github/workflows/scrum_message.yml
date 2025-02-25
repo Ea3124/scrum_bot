@@ -1,0 +1,16 @@
+name: Send Discord Scrum Message
+
+on:
+  schedule:
+    - cron: '48 12 * * *'
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Message
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"content":"'"$(date +'%m월 %d일') 스크럼 회의록"'"}' \
+               ${{ secrets.DISCORD_WEBHOOK }}
