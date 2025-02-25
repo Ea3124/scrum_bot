@@ -2,7 +2,7 @@ name: Send Discord Scrum Message
 
 on:
   schedule:
-    - cron: '24 8 * * *'
+    - cron: '50 8 * * *'  
 
 jobs:
   send_message:
@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Send Discord Message
         run: |
+          tomorrow=$(date -d "+1 day" +'%m월 %d일')  # 날짜 +1일
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content":"'"$(date +'%m월 %d일') 스크럼 회의록"'"}' \
+               -d '{"content":"'"$tomorrow 스크럼 회의록"'"}' \
                ${{ secrets.DISCORD_WEBHOOK }}
