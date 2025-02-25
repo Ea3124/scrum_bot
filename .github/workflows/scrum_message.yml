@@ -2,7 +2,7 @@ name: Send Discord Scrum Message
 
 on:
   schedule:
-    - cron: '48 12 * * *'
+    - cron: '24 8 * * *'
 
 jobs:
   send_message:
